@@ -1,6 +1,6 @@
 # Ignore node_modules in the root of your project
 node_modules/
-client/node_modules
+/client/node_modules
 
 # Ignore build and dist folders for client-side React app
 client/build/
