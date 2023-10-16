@@ -1,0 +1,25 @@
+# Ignore node_modules in the root of your project
+node_modules/
+client/node_modules
+
+# Ignore build and dist folders for client-side React app
+client/build/
+client/dist/
+
+# Ignore logs and other runtime-generated files
+logs/
+*.log
+
+# Ignore environment-specific files (e.g., .env files with sensitive data)
+.env
+
+# Ignore editor-specific files and directories
+.vscode/
+.idea/
+
+# Ignore user-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore server logs (if applicable)
+server/logs/
