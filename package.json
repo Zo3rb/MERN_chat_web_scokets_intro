@@ -4,7 +4,7 @@
   "description": "Chat Application using MERN Stack and Socket.io as Introduction for web sockets and how to send/receive real time data from and to Server/Clients.",
   "main": "server.js",
   "scripts": {
-    "dev:server": "nodemone ./server",
+    "dev:server": "nodemon ./server",
     "dev:client": "cd client && npm start",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\""
   },

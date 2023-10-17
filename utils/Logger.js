@@ -3,7 +3,6 @@ const morgan = require("morgan");
 
 class CustomLogger {
   constructor() {
-    // Define custom colors using 'colors'
     colors.setTheme({
       success: "green",
       error: "red",
@@ -12,14 +11,14 @@ class CustomLogger {
   }
 
   createLogger() {
-    // Create a custom token for morgan
     morgan.token("custom", (req, res) => {
       const status = res.statusCode;
       const statusColor = status >= 400 ? "error" : "success";
-      return `${statusColor(status)} ${"info"} ${"info"}`;
+      return `${colors[statusColor](status)} ${colors.info(
+        req.method
+      )} ${colors.info(req.originalUrl)}`;
     });
 
-    // Return the custom logger using the custom token
     return morgan(":custom");
   }
 }
