@@ -22,7 +22,7 @@ app.use(cors());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // API Endpoints.
-app.use("/health_check", (req, res) => {
+app.use("/health-check", (req, res) => {
   return res.status(200).json({
     status: "ok",
   });

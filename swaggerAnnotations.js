@@ -1,6 +1,6 @@
 /**
  * @swagger
- * /health_check:
+ * /health-check:
  *   get:
  *     summary: Check the health of the server.
  *     description: Returns a status message indicating that the server is running.
