@@ -6,6 +6,7 @@ const swaggerUi = require("swagger-ui-express");
 const CustomLogger = require("./utils/Logger");
 const DBConnect = require("./utils/DB_connect");
 const swaggerSpec = require("./utils/Swagger_doc");
+const { ClientError, ServerError } = require("./utils/CustomError");
 
 // Few Instance Configuration.
 const app = express();
@@ -25,6 +26,32 @@ app.use("/health_check", (req, res) => {
   return res.status(200).json({
     status: "ok",
   });
+});
+
+// Error handling middleware for client (4xx) errors
+app.use((err, req, res, next) => {
+  if (err instanceof ClientError) {
+    // Log the error using your custom logger
+    customLogger.logError(err.message);
+
+    // Respond with a custom error message and status code
+    return res.status(err.statusCode).json({ error: err.message });
+  }
+
+  next(err); // Pass other errors to the next middleware
+});
+
+// Error handling middleware for server (5xx) errors
+app.use((err, req, res, next) => {
+  if (err instanceof ServerError) {
+    // Log the error using your custom logger
+    customLogger.logError(err.message);
+
+    // Respond with a custom error message and status code
+    return res.status(err.statusCode).json({ error: err.message });
+  }
+
+  next(err); // Pass other errors to the next middleware
 });
 
 // Graceful shutdown when 'SIGINT' (Ctrl+C) is received
